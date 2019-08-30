@@ -38,7 +38,7 @@ void vigennere::cifrado() {
 void vigennere::descifrado() {
 	for (int i = 0; i < size(mensaje); i++) {
 		int m = alf.find(mensaje[i]) - alf.find(clave[i]);
-		(m >= 0) ? mensaje[i] = alf[m] : mensaje[i] = alf[m + 37];
+		mensaje[i] = (m >= 0) ? alf[m] : alf[m + 37];
 	}
 	cout <<"el mensaje es: "<< mensaje;
 }
