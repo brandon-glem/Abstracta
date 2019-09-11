@@ -7,11 +7,16 @@
 
 using namespace std;
 
-int main() {
-	vigennere emisor;
-	emisor.cifrado();
 
-	vigennere receptor(emisor.get_clave(), emisor.get_mensaje());
-	receptor.descifrado();
+int main() {
+	string mensaje = "oa6hc9ce825191vxlaf6qhl2k3a24rpf1lcxb8qn0ui w";
+	vigennere receptor("hxvhd7z3u31jq1dy6rb78ha3 3b0tr8b2i9yb7970s0 x", "oa6hc9ce825191vxlaf6qhl2k3a24rpf1lcxb8qn0ui w");
+
+	cout << "ingrse mensaje: ";
+	string men;
+	getline(cin, men);
+	vigennere emisor(men);
+	
+	vigennere recep(emisor.get_clave(), emisor.cifrado(men));
 	return 0;
 }

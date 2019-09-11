@@ -1,22 +1,26 @@
 #pragma once
-#include <string>
+#include <iostream>
+#include <string.h>
+#include <cstring>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
-class vigennere
-{
+int modulo(int dividendo, int divisor);
+
+class vigennere{
 private:
-	string alf = "abcdefghijklmnopqrstuvwxyz0123456789 ";
 	string clave;
-	string mensaje;
 
 public:
-	vigennere();
+	string alf = "abcdefghijklmnopqrstuvwxyz0123456789 ";
+
+	vigennere(string);
 	vigennere(string, string);
 
-	void cifrado();
-	void descifrado();
+	string cifrado(string);
+	string descifrado(string);
 
-	string get_mensaje();
 	string get_clave();
 };
