@@ -16,12 +16,12 @@ private:
 	string clave;
 
 public:
-	string alf = "abcdefghijklmnopqrstuvwxyz";
+	string alf = "abcdefghijklmnopqrstuvwxyz0123456789 ";
 
 	vernam(string mensaje);
-	vernam(string clav, string mensaje);
+	vernam(string clav, vector<string> mensaje);
 
-	string cifrado(string mensaje);
-	string decifrado(string mensaje);
+	vector<string> cifrado(string mensaje);
+	string decifrado(vector<string> mensaje);
 	string get_clave() {return clave;}
 };

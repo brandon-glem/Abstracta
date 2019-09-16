@@ -29,7 +29,7 @@ vernam::vernam(string mensaje){
 	cout << "CLAVE: " << clave << endl;
 }
 
-string vernam::cifrado(string mensaje) {
+vector<string> vernam::cifrado(string mensaje) {
 	vector<string> m;
 	vector<string> c;
 
@@ -37,6 +37,8 @@ string vernam::cifrado(string mensaje) {
 	string cifrado;
 
 	int tam = size(mensaje);
+
+	cout << "EL MENSAJE CIFRADO ES: " << endl;
 
 	for (int i = 0; i < tam; i++) {
 		int temp = alf.find(mensaje[i]);
@@ -60,48 +62,40 @@ string vernam::cifrado(string mensaje) {
 			string temp = (m[i][j] != c[i][j]) ? "1" : "0";
 			numero += temp;
 		}
+		cout << numero << endl;
 		cifradoB.push_back(numero);
-		int tem = stoi(cifradoB[i], nullptr, 2);
-		cifrado += (tem > size(alf)) ? alf[tem - size(alf)] : alf[tem];
 	}
-	cout << "EL MENSAJE CIFRADO ES: " << cifrado << endl;
-	return cifrado;
+	return cifradoB;
 }
 
-vernam::vernam(string clav, string mensaje) {
+vernam::vernam(string clav, vector<string> mensaje) {
 	clave = clav;
 	cout << "EL MENSAJE ES: "<< decifrado(mensaje)<<endl;
 }
 
 
-string vernam::decifrado(string mensaje) {
-	vector<string> a;
+string vernam::decifrado(vector<string> mensaje) {
 	vector<string> b;
 
 	vector<string> decifradoB;
 	string decifrado;
 
-	int tam = size(mensaje);
+	int tam = size(clave);
 
 	for (int i = 0; i < tam; i++) {
-		int temp = alf.find(mensaje[i]);
-		a.push_back(to_string(temp));
 
-		temp = alf.find(clave[i]);
+		int temp = alf.find(clave[i]);
 		b.push_back(to_string(temp));
 
-		int temp2 = stoi(a[i]);
-		bitset<6> x(temp2);
-		a[i] = x.to_string();
-
-		temp2 = stoi(b[i]);
+		int temp2 = stoi(b[i]);
 		bitset<6> y(temp2);
 		b[i] = y.to_string();
 	}
+
 	for (int i = 0; i < tam; i++) {
 		string numero;
-		for (int j = 0; j < size(a[i]); j++) {
-			string temp = ((a[i][j] == '0') && (b[i][j] == '0')) ? "0" : "1";
+		for (int j = 0; j < size(mensaje[i]); j++) {			
+			string temp = (mensaje[i][j] != b[i][j]) ? "1" : "0";
 			numero += temp;
 		}
 		decifradoB.push_back(numero);
